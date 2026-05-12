@@ -1,13 +1,12 @@
-import { Router } from "express";
-const routes = Router();
-import categoriaRoutes from "./categoriaRoutes.js";
-import produtoRoutes from "./prdutoRoutes.js";
-import pedidoRoutes from "./pedidoRoutes.js";
-import clienteRoutes from "./clienteRoutes.js";
+import { Router } from 'express';
+const routes = Router()
+import categoriaRoutes from './categoriaRoutes.js';
+import produtosRoutes from './produtosRoutes.js';
+import pedidoRoutes from './pedidoRoutes.js';
 
-routes.use('/pedidos', pedidoRoutes)
+
 routes.use('/categorias', categoriaRoutes);
-routes.use('/produtos', produtoRoutes);
-routes.use('/clientes', clienteRoutes)
+routes.use('/produtos', produtosRoutes);
+routes.use('/pedidos', pedidoRoutes);
 
-export default routes; 
+export default routes;
