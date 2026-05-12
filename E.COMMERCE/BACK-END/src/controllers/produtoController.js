@@ -43,7 +43,7 @@ const produtoController = {
             res.status(500).json({ message: 'Erro ao deletar produto', errorMessage: error.message });
         }
     },
-    selecionar : async (req, res) => {
+    selecionar : async (res) => {
         try {
             const result = await produtosRepository.selecionar();
             res.status(200).json({ result });
@@ -53,6 +53,17 @@ const produtoController = {
             res.status(500).json({ message: 'Erro ao selecionar produtos', errorMessage: error.message });
         }
     },
+
+    selecionarId: async (req, res) => {
+        try {
+            const id = req.params.id;
+            const result = await produtosRepository.selecionarId(id);
+            res.status(200).json({ result });
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Erro ao selecionar produtos', errorMessage: error.message });
+        }
+    }
     
 }
 

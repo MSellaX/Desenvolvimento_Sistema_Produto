@@ -2,7 +2,7 @@ import { connection } from "../config/Database.js";
 
 const produtosRepository = {
     criar:async (dados) => {
-        const sql = 'INSERT INTO Produtos (idCategoria, Nome, Valor, vinculoImagem) VALUES (?, ?, ?, ?)'
+        const sql = 'INSERT INTO Produtos (idCategoria, Nome, Valor, vinculoImagem, q) VALUES (?, ?, ?, ?)'
         const values = [dados.idCategoria, dados.nome, dados.valor, dados.vinculoImagem];
         const [rows] = await connection.execute(sql, values);
         return rows
@@ -22,6 +22,13 @@ const produtosRepository = {
     selecionar:async () => {
         const sql = 'SELECT * FROM Produtos;'
         const [rows] = await connection.execute(sql);
+        return rows
+    },
+
+    selecionarId: async (id)=> {
+        const sql = "SELECT * FROM produtos  WHERE id=?;";
+        const values = [id];
+        const [rows] = await connection.execute(sql, values);
         return rows
     }
 }
