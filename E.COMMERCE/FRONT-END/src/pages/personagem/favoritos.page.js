@@ -2,6 +2,8 @@ import { listarFavoritos } from '../../storage/personagem/favoritos.storage'
 import criarColuna from '../../components/shared/coluna-bootstrap.component'
 import criarCardPersonagem from '../../components/personagem/card.component';
 
+// teste
+
 export async function personagensFavoritosPage() {
 
     const app = document.querySelector("#app");
