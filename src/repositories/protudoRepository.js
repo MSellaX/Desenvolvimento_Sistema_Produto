@@ -23,11 +23,12 @@ const produtoRepository = {
         return rows
     },
 
-    selecionar: async () => {
+    selecionarTodos: async () => {
         const sql = 'SELECT * FROM produtos'
         const [rows] = await connection.execute(sql)
         return rows
-    }
+    },
+    s
 
 }
 
