@@ -29,8 +29,11 @@ const produtoRepository = {
         return rows
     },
     
-    selecionarPorID: async () => {
-        const sql = 'SELECT * FROM produtos WHERE id = ?'
+    selecionarPorId: async () => {
+        const sql = 'SELECT * FROM produtos WHERE id = ?';
+        const values = [id]
+        const [rows] = await connection.execute(sql, values)
+        return rows
     }
 
 }

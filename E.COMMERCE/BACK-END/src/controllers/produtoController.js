@@ -37,9 +37,19 @@ const produtoController={
             res.status(500).json({message:'Ocorreu um erro no servidor', errorMessage: error.message})
         }
     },
-    selecionar: async (req,res) => {
+    selecionar: async (res) => {
         try {
             const result = await produtoRepository.selecionar();
+            res.status(201).json({result})
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({message:'Ocorreu um erro no servidor', errorMessage: error.message})
+        }
+    },
+    selecionarPorId: async (req,res) => {
+        try {
+            const id = req.params.id;
+            const result = await produtoRepository.selecionarPorId(id);
             res.status(201).json({result})
         } catch (error) {
             console.log(error);
