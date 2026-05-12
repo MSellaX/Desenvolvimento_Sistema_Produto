@@ -51,14 +51,14 @@ npm run preview
  ┃ ┃ ┣ 📂 controllers
  ┃ ┃ ┣ 📂 enums
  ┃ ┃ ┣ 📂 middlewares
- ┃ ┃ ┣ 📂 models
+ ┃ ┃ ┣ 📂 models    
  ┃ ┃ ┣ 📂 repositories
- ┃ ┃ ┣ 📂 routes
+ ┃ ┃ ┣ 📂 routes                            
  ┃ ┃ ┣ 📂 utils
  ┃ ┃ ┗ 📜 sever.js
  ┃ ┣ 📜 .env
  ┃ ┣ 📓 .gitignore
- ┃ ┣ 📜 package.
+ ┃ ┗ 📜 package.json
  ┣ 📂 front-end
  ┃ ┣ 📂 public
  ┃ ┣ 📂 src
