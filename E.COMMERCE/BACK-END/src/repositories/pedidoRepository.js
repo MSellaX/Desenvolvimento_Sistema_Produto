@@ -12,7 +12,7 @@ const pedidoRepository = {
 
             for (const item of itens) {
                 const [produto] = await conn.execute(
-                    "SELECT Valor FROM produtos WHERE idProduto = ?",
+                    "SELECT preco FROM produtos WHERE id = ?",
                     [item.produtoId]
                 );
 
@@ -25,20 +25,20 @@ const pedidoRepository = {
             }
 
             const [rowsPed] = await conn.execute(
-                "INSERT INTO pedidos(clienteId, subTotal, status) VALUES (?, ?, ?)",
-                [pedido.clienteId, subTotal, pedido.status]
+                "INSERT INTO pedidos(, valorTotal, Status) VALUES (?, ?, ?)",
+                [subTotal, pedido.status]
             );
 
             for (const item of itens) {
                 const [produto] = await conn.execute(
-                    "SELECT Valor FROM produtos WHERE idProduto = ?",
+                    "SELECT preco FROM produtos WHERE id = ?",
                     [item.produtoId]
                 );
 
                 const valor = produto[0].Valor;
 
                 await conn.execute(
-                    `INSERT INTO itens_pedidos (pedidoId, produtoId, Quatidade, valorItem)
+                    `INSERT INTO itens_pedidos (pedidoId, produtoId, quantidade, valorItem)
                      VALUES (?, ?, ?, ?)`,
                     [rowsPed.insertId, item.produtoId, item.quantidade, valor]
                 );
@@ -65,7 +65,7 @@ const pedidoRepository = {
 
             for (const item of itens) {
                 const [produto] = await conn.execute(
-                    "SELECT Valor FROM produtos WHERE idProduto = ?",
+                    "SELECT preco FROM produtos WHERE id = ?",
                     [item.produtoId]
                 );
 
@@ -78,21 +78,21 @@ const pedidoRepository = {
             }
 
             await conn.execute(
-                "UPDATE pedidos SET clienteId = ?, subTotal = ?, status = ? WHERE id = ?",
+                "UPDATE pedidos SET valorTotal = ?, Status = ? WHERE id = ?",
                 [pedido.clienteId, subTotal, pedido.status, id]
             );
 
 
             for (const item of itens) {
                 const [produto] = await conn.execute(
-                    "SELECT Valor FROM produtos WHERE idProduto = ?",
+                    "SELECT preco FROM produtos WHERE id = ?",
                     [item.produtoId]
                 );
 
                 const valor = produto[0].Valor;
 
                 await conn.execute(
-                    `INSERT INTO itens_pedidos (pedidoId, produtoId, Quatidade, valorItem)
+                    `INSERT INTO itens_pedidos (pedidoId, produtoId, quantidade, valorItem)
                      VALUES (?, ?, ?, ?)`,
                     [id, item.produtoId, item.quantidade, valor]
                 );
@@ -156,7 +156,7 @@ const pedidoRepository = {
             );
 
             const [itens] = await conn.execute(
-                "SELECT Quatidade, valorItem FROM itens_pedidos WHERE pedidoId = ?",
+                "SELECT quantidade, valorItem FROM itens_pedidos WHERE pedidoId = ?",
                 [pedidoId]
             );
 
@@ -167,7 +167,7 @@ const pedidoRepository = {
             });
 
             await conn.execute(
-                "UPDATE pedidos SET subTotal = ? WHERE id = ?",
+                "UPDATE pedidos SET valorTotal = ? WHERE id = ?",
                 [subTotal, pedidoId]
             );
 
@@ -189,7 +189,7 @@ const pedidoRepository = {
                 p.*,
                 i.id as itemId,
                 i.produtoId,
-                i.Quatidade,
+                i.quantidade,
                 i.valorItem
             FROM pedidos p
             LEFT JOIN itens_pedidos i ON i.pedidoId = p.id
@@ -206,7 +206,7 @@ const pedidoRepository = {
             await conn.beginTransaction();
 
             const [produto] = await conn.execute(
-                "SELECT Valor FROM produtos WHERE idProduto = ?",
+                "SELECT preco FROM produtos WHERE id = ?",
                 [item.produtoId]
             );
 
@@ -217,14 +217,14 @@ const pedidoRepository = {
             const valor = produto[0].Valor;
 
             await conn.execute(
-                `INSERT INTO itens_pedidos (pedidoId, produtoId, Quatidade, valorItem)
+                `INSERT INTO itens_pedidos (pedidoId, produtoId, quantidade, valorItem)
              VALUES (?, ?, ?, ?)`,
                 [pedidoId, item.produtoId, item.quantidade, valor]
             );
 
             await conn.execute(
                 `UPDATE pedidos 
-             SET subTotal = subTotal + ? 
+             SET valorTotal = valorTotal + ? 
              WHERE id = ?`,
                 [valor * item.quantidade, pedidoId]
             );
@@ -261,7 +261,7 @@ const pedidoRepository = {
             }
 
             const [produto] = await conn.execute(
-                "SELECT Valor FROM produtos WHERE idProduto = ?",
+                "SELECT preco FROM produtos WHERE idProduto = ?",
                 [item[0].ProdutoId]
             );
 
@@ -273,13 +273,13 @@ const pedidoRepository = {
 
             await conn.execute(
                 `UPDATE itens_pedidos 
-             SET Quatidade = ?, valorItem = ? 
+             SET quantidade = ?, valorItem = ? 
              WHERE id = ?`,
                 [quantidade, valor, itemId]
             );
 
             const [itens] = await conn.execute(
-                "SELECT Quatidade, valorItem FROM itens_pedidos WHERE pedidoId = ?",
+                "SELECT quantidade, valorItem FROM itens_pedidos WHERE pedidoId = ?",
                 [pedidoId]
             );
 
@@ -290,7 +290,7 @@ const pedidoRepository = {
             });
 
             await conn.execute(
-                "UPDATE pedidos SET subTotal = ? WHERE id = ?",
+                "UPDATE pedidos SET valorTotal = ? WHERE id = ?",
                 [subTotal, pedidoId]
             );
 
@@ -326,7 +326,7 @@ const pedidoRepository = {
             }
 
             await conn.execute(
-                "UPDATE pedidos SET status = ? WHERE id = ?",
+                "UPDATE pedidos SET Status = ? WHERE id = ?",
                 [status, id]
             );
 
