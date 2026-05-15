@@ -7,26 +7,34 @@ const pedidoRepository = {
 
         try {
             await conn.beginTransaction();
-
-            let subTotal = 0;
+            let total = 0;
 
             for (const item of itens) {
-                const [produto] = await conn.execute(
-                    "SELECT preco FROM produtos WHERE id = ?",
+                let [produto] = await conn.execute(
+                    "SELECT quantidade, preco FROM produtos WHERE id = ?",
                     [item.produtoId]
                 );
 
-                if (produto.length === 0) {
+                if (produto.length !== 1) {
                     throw new Error(`Produto ${item.produtoId} não encontrado`);
                 }
+                
+                if (produto[0].quantidade === 0) {
+                    throw new Error(`Produto ${item.produtoId} sem estoque suficiente`);
+                };
+                
+                produto.quantidade -= item.quantidade;
+                
+                if (produto[0].quantidade < 0) {
+                    throw new Error(`Quantidade insuficiente para o produto ${item.produtoId}`);
+                }
 
-                const valor = produto[0].Valor;
-                subTotal += valor * item.quantidade;
+                total += produto[0].preco * item.quantidade;
             }
 
             const [rowsPed] = await conn.execute(
                 "INSERT INTO pedidos(, valorTotal, Status) VALUES (?, ?, ?)",
-                [subTotal, pedido.status]
+                [valorTotal, pedido.status]
             );
 
             for (const item of itens) {
@@ -79,7 +87,7 @@ const pedidoRepository = {
 
             await conn.execute(
                 "UPDATE pedidos SET valorTotal = ?, Status = ? WHERE id = ?",
-                [pedido.clienteId, subTotal, pedido.status, id]
+                [subTotal, pedido.status, id]
             );
 
 
@@ -163,7 +171,7 @@ const pedidoRepository = {
             let subTotal = 0;
 
             itens.forEach(i => {
-                subTotal += i.Quatidade * i.valorItem;
+                subTotal += i.quatidade * i.valorItem;
             });
 
             await conn.execute(
@@ -342,5 +350,6 @@ const pedidoRepository = {
         }
     }
 }
+
 
 export default pedidoRepository;
