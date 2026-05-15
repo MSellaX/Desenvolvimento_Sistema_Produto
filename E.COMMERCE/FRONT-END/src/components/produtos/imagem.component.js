@@ -9,7 +9,7 @@ export default function criarImagemProduto(produto) {
     img.style.height = '360px';
     img.style.objectFit = produto.image ? 'cover' : '';
 
-    img.src = produto.image ? produto.image : '/default-character.png';
+    img.src = produto.image
 
     return img
 }

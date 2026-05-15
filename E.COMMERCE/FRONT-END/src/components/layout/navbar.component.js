@@ -25,13 +25,13 @@ export default function criarNavbar() {
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse justify-content-center" id="menu">
+      <div class="collapse navbar-collapse justify-content-end" id="menu">
 
         <ul class="navbar-nav mb-2 mb-lg-0 d-flex flex-row gap-3">
 
           <li class="nav-item">
             <button 
-              class="nav-link fw-bold text-primary active" 
+              class="nav-link fw-bold active" 
               id="btnProdutos"
             >
               Produtos
@@ -50,16 +50,6 @@ export default function criarNavbar() {
         </ul>
 
       </div>
-
-      <form class="d-flex">
-        <input 
-          class="form-control" 
-          type="search" 
-          placeholder="Pesquisar" 
-          id="inputSearch"
-        >
-      </form>
-
     </div>
   `;
 
@@ -84,12 +74,12 @@ export function ativarMenu(botaoClicado) {
 
   document.querySelectorAll('.nav-link').forEach(btn => {
 
-    btn.classList.remove('active', 'text-primary');
+    btn.classList.remove('active');
     btn.classList.add('text-white');
 
   });
 
-  botaoClicado.classList.add('active', 'text-primary');
+  botaoClicado.classList.add('active');
   botaoClicado.classList.remove('text-white');
 
 }                                                                                                                                          
