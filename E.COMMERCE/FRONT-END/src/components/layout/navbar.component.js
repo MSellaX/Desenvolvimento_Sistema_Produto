@@ -6,13 +6,13 @@ export default function criarNavbar() {
   const header = document.querySelector('header');
   const nav = document.createElement('nav');
 
-  nav.className = 'navbar navbar-expand-lg bg-dark shadow-sm';
+  nav.className = 'navbar navbar-expand-lg bg-secondary shadow-sm';
 
   nav.innerHTML = `
   
     <div class="container-fluid">
 
-      <a class="navbar-brand fw-bold text-white" href="#">
+      <a class="navbar-brand fw-bold text-primary" href="#">
         Loja
       </a>
 

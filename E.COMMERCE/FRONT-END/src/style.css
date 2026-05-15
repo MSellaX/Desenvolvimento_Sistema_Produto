@@ -1,9 +1,8 @@
 /* style teste*/
 :root {
-  --bs-primary: #740001;
-  --bs-primary-rgb: 116, 0, 1;
-  --bs-secondary: #D3A625;
-  --bs-success: #EEBA30;
+  --bs-primary: rgb(0, 75, 100);
+  --bs-secondary: #3cff00;
+  --bs-success: #37ff00;
 }
 
 html, body {
@@ -12,7 +11,8 @@ html, body {
 
 body {
   font-family: 'Manrope', 'Inter', sans-serif;
-  background-color: #FAF9F8;
+  background-color: #FFFAF4;
+  
 }
 
 .card-produto {
@@ -46,7 +46,7 @@ body {
 }
 
 .card-produto .text-warning {
-  color: #D3A625 !important;
+  color: #00171f !important;
   letter-spacing: 1px;
   font-size: 10px;
 }
@@ -118,11 +118,7 @@ button:hover .icone-materiais {
     color: #fff;
 }
 
-.page-item.active .page-link {
-    background-color: var(--bs-primary);
-    border-color: var(--bs-primary);
-    color: #fff;
-}
+
 
 .page-item.disabled .page-link {
     cursor: not-allowed;
