@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_URL = 'https://fakestoreapi.com/products';
-
+// API
 export async function  buscarProdutos() {
     try {
         

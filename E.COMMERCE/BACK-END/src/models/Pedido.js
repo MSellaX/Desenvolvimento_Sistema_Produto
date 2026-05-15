@@ -1,67 +1,71 @@
-export class Pedido {
+export class Pedido{
     #id;
     #clienteId;
     #subTotal;
     #status;
+    #dataCad
 
-    constructor(pClienteId, pSubTotal, pStatus, pId) {
-        this.clienteId = pClienteId;
-        this.subTotal = pSubTotal;
-        this.status = pStatus;
-        this.id = pId;
+    //construtor
+
+    constructor (pClienteId, pSubTotal, pStatus, pId){
+        this.#clienteId = pClienteId;
+        this.#subTotal = pSubTotal;
+        this.#status = pStatus;
+        this.#id = pId;
     }
 
-    // GETTERS
-    get id() { return this.#id; }
-    get clienteId() { return this.#clienteId; }
-    get subTotal() { return this.#subTotal; }
-    get status() { return this.#status; }
-
-    // SETTERS
-    set id(value) {
+    //getter
+    get id (){
+        return this.#id;
+    }
+    get clienteId (){
+        return this.#clienteId;
+    }
+    get subTotal (){
+        return this.#subTotal;
+    }
+    get status (){
+        return this.#status;
+    }
+    //setters
+    set id(value){
         this.#validarId(value);
-        this.#id = value;
+        this.#id = value
     }
-
-    set clienteId(value) {
+    set clienteId(value){
         this.#validarClienteId(value);
-        this.#clienteId = value;
+        this.#clienteId = value
     }
-
-    set subTotal(value) {
+    set subTotal(value){
         this.#validarSubTotal(value);
-        this.#subTotal = value;
+        this.#subTotal = value
     }
-
-    set status(value) {
-        this.#status = value;
+    set status(value){
+        this.#status = value
     }
-
-    // VALIDAÇÕES
-    #validarId(value) {
-        if (value !== null && value !== undefined && value <= 0) {
+    //métodos auxiliares
+    #validarId(value){
+        if(value && value<=0){
             throw new Error("Verifique o ID informado");
         }
-    }
-
-    #validarClienteId(value) {
-        if (value == null || value <= 0) {
+    }    
+    #validarClienteId(value){
+        if(value && value<=0){
             throw new Error("Verifique o ID do cliente informado");
         }
-    }
-
-    #validarSubTotal(value) {
-        if (value == null || value < 0) {
-            throw new Error("Não foi possível obter o subtotal");
+    }    
+    #validarSubTotal(value){
+        if(value && value<=0){
+            throw new Error("Não foi possivel obter o subtotal");
         }
     }
 
-    // FACTORY
-    static criar(dados) {
+    //design patterns
+
+    static criar(dados){
         return new Pedido(dados.clienteId, dados.subTotal, dados.status, null);
     }
-
-    static alterar(dados, id) {
+    static alterar(dados, id){
         return new Pedido(dados.clienteId, dados.subTotal, dados.status, id);
     }
 }

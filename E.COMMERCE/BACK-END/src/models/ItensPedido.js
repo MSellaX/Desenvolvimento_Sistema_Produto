@@ -1,93 +1,96 @@
 export class ItensPedido {
     #id;
     #pedidoId;
-    #produtoId;
+    #ProdutoId;
     #quantidade;
     #valorItem;
 
-    // CONSTRUTOR
+    //construtor
+
     constructor(pProdutoId, pQuantidade, pValorItem, pId, pPedidoId) {
-        this.#produtoId = pProdutoId;
+        this.#ProdutoId = pProdutoId;
         this.#quantidade = pQuantidade;
         this.#valorItem = pValorItem;
         this.#id = pId;
         this.#pedidoId = pPedidoId;
     }
-    // GETTERS
-   get id (){
+
+    //getter
+    get id() {
         return this.#id;
     }
-    get pedidoId (){
+    get pedidoId() {
         return this.#pedidoId;
     }
-    get produtoId(){
-        return this.#produtoId;
+    get produtoId() {
+        return this.#ProdutoId;
     }
-    get quantidade(){
+    get quantidade() {
         return this.#quantidade;
     }
-    get valorItem(){
+    get valorItem() {
         return this.#valorItem;
     }
-
-    // SETTERS
+    //setters
     set id(value) {
         this.#validarId(value);
-        this.#id = value;
+        this.#id = value
     }
-    set clienteId(value) {
+    set pedidoId(value) {
         this.#validarPedidoId(value);
-        this.#pedidoId = value;
+        this.#pedidoId = value
     }
     set produtoId(value) {
         this.#validarProdutoId(value);
-        this.#produtoId = value;
+        this.#ProdutoId = value
     }
     set quantidade(value) {
         this.#validarQuantidade(value);
-        this.#quantidade = value;
+        this.#quantidade = value
     }
-    set valorItem(value){
-        this.#validarValorItem(value);
-        this.#valorItem = value;
+    set valorItem(value) {
+        this.#validarValor(value);
+        this.#valorItem = value
     }
-    // MÉTODOS AUXILIARES
+    //métodos auxiliares
     #validarId(value) {
-        if (value && value <= 0) {
+        if (!value || value <= 0) {
             throw new Error("Verifique o ID informado");
         }
     }
     #validarPedidoId(value) {
-        if (value || value <= 0) {
+        if (!value || value <= 0) {
             throw new Error("Verifique o ID do pedido informado");
         }
     }
     #validarProdutoId(value) {
         if (!value || value <= 0) {
-            throw new Error("Verifique o ID do produto informado");
+            throw new Error("verifique o ID do produto informado");
         }
     }
     #validarQuantidade(value) {
         if (!value || value <= 0) {
-            throw new Error("Não foi possível obeter a quantidade");
+            throw new Error("Não foi possivel obter a quantidade");
         }
     }
-    #validarValorItem(value) {
+    #validarValor(value) {
         if (!value || value <= 0) {
-            throw new Error("Informe um valor para o item");
+            throw new Error("Não foi possivel obter o valor");
         }
-    }
-    static calcularSubTotalItens(itens){
-        return( itens.reduce(
-            (total, item) => total+(item.valorItem * item.quantidade), 0
-        )) 
     }
 
-    // DESIGN PATTERN
-    static criar(dados) {
-        return new ItensPedido(dados.produtoId, dados.quantidade, dados.valorItem, null, null)
+    static calcularSubTotalItens(itens) {
+        return (itens.reduce(
+            (total, item) => total + (item.valorItem * item.quantidade), 0
+        ));
     }
-    static editar(dados, id) {
-        return new ItensPedido(dados.produtoId, dados.quantidade, dados.valorItem, id, dados.pedidoId)
+
+    //design patterns
+
+    static criar(dados) {
+        return new ItensPedido(dados.produtoId, dados.quantidade, dados.valorItem, null, null);
+    }
+    static alterar(dados, id) {
+        return new ItensPedido(dados.produtoId, dados.quantidade, dados.valorItem, id, dados.pedidoId);
     }
 }

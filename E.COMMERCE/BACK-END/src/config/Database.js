@@ -1,10 +1,10 @@
 import mysql from 'mysql2/promise';
-import 'dotenv/config'
+import 'dotenv/config';
 
-//Design Pattern: Singleton => Permite a crição de apenas uma instância da classe
-class Database{
-    static #instance = null;
-    #pool = null;
+//design pattern: Singleton ---> permite  a criação de apenas uma instância da classe
+class Database {
+    static #instance =null;
+    #pool =null;
 
     #createPool(){
         this.#pool = mysql.createPool({
@@ -26,9 +26,8 @@ class Database{
         }
         return Database.#instance;
     }
-
-    getPool(){
-        return this.#pool;
+    getPool (){
+        return this.#pool
     }
 }
 
