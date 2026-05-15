@@ -4,12 +4,12 @@ import { salvarCarrinho, removerCarrinho, noCarrinho, alterarQuantidade } from '
 
 export default function criarCardProduto(produto, { modo = 'produtos', aoMudarQtd, aoRemover } = {}) {
     const card = document.createElement('div');
-    card.className = 'card personagem-card border-0';
+    card.className = 'card card-produto border-0';
 
     const imagemContainer = document.createElement('div');
     imagemContainer.className = 'position-relative overflow-hidden';
     const imagem = criarImagemProduto(produto);
-    imagem.classList.add('card-img-top', 'personagem-img');
+    imagem.classList.add('card-img-top', 'imagem-produto');
     imagemContainer.appendChild(imagem);
 
     const corpo = document.createElement('div');
@@ -53,7 +53,7 @@ export default function criarCardProduto(produto, { modo = 'produtos', aoMudarQt
     campoQtd.style.width = '64px';
 
     const grupoQtd = document.createElement('div');
-    grupoQtd.className = 'd-flex align-items-center gap-1 quantity-control';
+    grupoQtd.className = 'd-flex align-items-center gap-1 controle-quantidade';
     grupoQtd.append(botaoMenos, campoQtd, botaoMais);
 
     const rodape = document.createElement('div');
