@@ -8,9 +8,9 @@ const pedidoController = {
 
     criar: async (req, res) => {
         try {
-            const { clienteId, itens } = req.body;
+            const {itens } = req.body;
 
-                
+
 
             if (!Array.isArray(itens) || itens.length === 0) {
                 return res.status(400).json({ message: "Informe os itens do pedido" });
@@ -45,7 +45,7 @@ const pedidoController = {
     editar: async (req, res) => {
         try {
             const { id } = req.params;
-            const { clienteId, status, itens } = req.body;
+            const {status, itens } = req.body;
 
             if (!id || Number(id) <= 0) {
                 return res.status(400).json({ message: "ID inválido" });
