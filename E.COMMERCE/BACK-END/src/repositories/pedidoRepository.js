@@ -4,64 +4,71 @@ const pedidoRepository = {
 
     criar: async (pedido, itens) => {
         const conn = await connection.getConnection();
-        
-        try { // Iniciar uma transação para garantir a integridade dos dados
+
+        try {
             await conn.beginTransaction();
+
             let valorTotal = 0;
-            let quantidade = 0;
 
             for (const item of itens) {
-                // Verificar o estoque do produto
-                let [produto] = await conn.execute(
-                    "SELECT quantidade, preco FROM produtos WHERE id = ?",
+                // Buscar produto com FOR UPDATE (evita venda duplicada)
+                const [produtoRows] = await conn.execute(
+                    "SELECT quantidade, preco FROM produtos WHERE id = ? FOR UPDATE",
                     [item.produtoId]
                 );
-                // Verificar se o produto existe
-                if (produto.length !== 1) {
+
+                if (produtoRows.length === 0) {
                     throw new Error(`Produto ${item.produtoId} não encontrado`);
                 }
-                // Verificar se há estoque suficiente
-                if (produto[0].quantidade === 0) {
-                    throw new Error(`Produto ${item.produtoId} sem estoque suficiente`);
-                };
-                
-                quantidade = produto.quantidade - item.quantidade;// Atualizar o estoque do produto
 
-                // Verificar se a quantidade solicitada é maior que o estoque disponível
-                if (produto[0].quantidade < 0) {
-                    throw new Error(`Quantidade insuficiente para o produto ${item.produtoId}`);
+                const produto = produtoRows[0];
+
+                // Verificações de estoque
+                if (produto.quantidade <= 0 || produto.quantidade < item.quantidade) {
+                    throw new Error(`Estoque insuficiente para o produto ${item.produtoId}. Disponível: ${produto.quantidade}`);
                 }
 
-                valorTotal += produto[0].preco * item.quantidade;
+                // ATUALIZAR ESTOQUE
+                await conn.execute(
+                    "UPDATE produtos SET quantidade = quantidade - ? WHERE id = ?",
+                    [item.quantidade, item.produtoId]
+                );
+
+                // Acumular valor total
+                valorTotal += produto.preco * item.quantidade;
             }
 
-            const [rowsPed] = await conn.execute(
-                "INSERT INTO pedidos(valorTotal, Status, quantidade) VALUES (?, ?, ?)",
-                [valorTotal, pedido.status, quantidade]
+            // Inserir o Pedido
+            const [pedidoResult] = await conn.execute(
+                "INSERT INTO pedidos (valorTotal, status) VALUES (?, ?)",
+                [valorTotal, pedido.status]
             );
-        
+
+            const pedidoId = pedidoResult.insertId;
+
+            // Inserir os itens do pedido
             for (const item of itens) {
-                const [produto] = await conn.execute(
+                const [produtoPreco] = await conn.execute(
                     "SELECT preco FROM produtos WHERE id = ?",
                     [item.produtoId]
                 );
 
-                const preco = produto[0].preco;
-
                 await conn.execute(
                     `INSERT INTO itens_pedidos (pedidoId, produtoId, quantidade, valorItem)
-                     VALUES (?, ?, ?, ?)`,
-                    [rowsPed.insertId, item.produtoId, item.quantidade, preco]
+             VALUES (?, ?, ?, ?)`,
+                    [pedidoId, item.produtoId, item.quantidade, produtoPreco[0].preco]
                 );
             }
 
             await conn.commit();
-            return { id: rowsPed.insertId, valorTotal };
+            return { id: pedidoId, valorTotal };
 
         } catch (error) {
             await conn.rollback();
+            console.error("Erro ao processar pedido:", error);
             throw error;
-        } finally {
+        }
+        finally {
             conn.release();
         }
     },
@@ -122,7 +129,7 @@ const pedidoRepository = {
     },
 
     // Deletar um pedido e seus itens associados
-    deletar: async (id) => { 
+    deletar: async (id) => {
         const conn = await connection.getConnection();
 
         try {
