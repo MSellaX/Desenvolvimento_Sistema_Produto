@@ -2,18 +2,6 @@
   box-sizing: border-box;
 }
 
-html,
-body {
-  overflow-x: hidden;
-}
-
-:root {
-  --bs-primary: #740001;
-  --bs-primary-rgb: 116, 0, 1;
-  --bs-secondary: #D3A625;
-  --bs-success: #EEBA30;
-}
-
 html, body {
   overflow-x: hidden;
 }
