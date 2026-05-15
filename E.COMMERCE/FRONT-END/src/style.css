@@ -6,6 +6,10 @@
   --bs-success: #EEBA30;
 }
 
+html, body {
+  overflow-x: hidden;
+}
+
 body {
   font-family: 'Manrope', 'Inter', sans-serif;
   background-color: #FAF9F8;
