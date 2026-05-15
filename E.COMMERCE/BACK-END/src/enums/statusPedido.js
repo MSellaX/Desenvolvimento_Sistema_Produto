@@ -1,7 +1,5 @@
-
-
 export const statusPed = {
-    ABERTO: 'Aberto',
-    FINALIZADO: 'Finalizado',
-    PENDENTE: 'pendente'
+    ABERTO:'aberto',
+    FINALIZADO:'finalizado',
+    PENDENTE:'pendente'
 }

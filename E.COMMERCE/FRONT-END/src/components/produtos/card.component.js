@@ -1,6 +1,7 @@
 import { criarBotaoCarrinho } from "./button.component";
 import criarImagemProduto from "./imagem.component";
 import { salvarCarrinho, removerCarrinho, noCarrinho, alterarQuantidade } from '../../storage/carrinho/carrinhos.storage'
+// component
 
 export default function criarCardProduto(produto, { modo = 'produtos', aoMudarQtd, aoRemover } = {}) {
     const card = document.createElement('div');
