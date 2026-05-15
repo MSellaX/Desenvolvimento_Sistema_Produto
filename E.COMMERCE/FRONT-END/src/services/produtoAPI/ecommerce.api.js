@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const API_URL = 'https://hp-api.onrender.com/api/characters';
-
-export async function  buscarPersonagens() {
+const API_URL = 'https://fakestoreapi.com/products';
+// API
+export async function  buscarProdutos() {
     try {
         
         const resposta = await axios.get(API_URL);
