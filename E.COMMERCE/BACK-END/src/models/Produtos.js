@@ -4,15 +4,15 @@ export class Produtos{
     #nome;
     #descricao;
     #preco;
-    #imagem;
+    #image;
     #quantidade;
 
-    constructor (pIdCategoria, pNome, pDescricao, pPreco, pImagem, pQuantidade, pIdProduto){
+    constructor (pIdCategoria, pNome, pDescricao, pPreco, pImage, pQuantidade, pIdProduto){
         this.#idCategoria = pIdCategoria;
         this.#nome = pNome;
         this.#descricao = pDescricao;
         this.#preco = pPreco;
-        this.#imagem = pImagem;
+        this.#image = pImage;
         this.#quantidade = pQuantidade;
         this.idProduto = pIdProduto;
     }
@@ -53,12 +53,12 @@ export class Produtos{
         this.#validarPreco(value)
         this.#preco = Number(value)
     }
-    get imagem(){
-        return this.#imagem
+    get image(){
+        return this.#image
     }
-    set imagem(value){
+    set image(value){
         this.#validarPathImagem(value);
-        this.#imagem = value;
+        this.#image = value;
     }
     get quantidade(){
         return this.#quantidade
@@ -110,9 +110,9 @@ export class Produtos{
     //criação de objetos usando o design patterns FACTORY mathod
 
     static criar(dados){
-        return new Produtos(dados.idCategoria, dados.nome, dados.descricao, dados.preco, dados.imagem, dados.quantidade, null);
+        return new Produtos(dados.idCategoria, dados.nome, dados.descricao, dados.preco, dados.image, dados.quantidade, null);
     }
     static alterar(dados, idProduto){
-        return new Produtos(dados.idCategoria, dados.nome, dados.descricao, dados.preco, dados.imagem, dados.quantidade, idProduto);
+        return new Produtos(dados.idCategoria, dados.nome, dados.descricao, dados.preco, dados.image, dados.quantidade, idProduto);
     }
 }

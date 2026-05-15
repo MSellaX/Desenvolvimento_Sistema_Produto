@@ -10,9 +10,7 @@ const pedidoController = {
         try {
             const { clienteId, itens } = req.body;
 
-            if (!clienteId || Number(clienteId) <= 0) {
-                return res.status(400).json({ message: "clienteId inválido" });
-            }
+                
 
             if (!Array.isArray(itens) || itens.length === 0) {
                 return res.status(400).json({ message: "Informe os itens do pedido" });
@@ -53,9 +51,7 @@ const pedidoController = {
                 return res.status(400).json({ message: "ID inválido" });
             }
 
-            if (!clienteId || Number(clienteId) <= 0) {
-                return res.status(400).json({ message: "clienteId inválido" });
-            }
+          
 
             if (!Object.values(statusPed).includes(status)) {
                 return res.status(400).json({ message: "Status inválido" });
