@@ -27,7 +27,9 @@ const pedidoController = {
 
             const pedido = Pedido.criar({
                 valorTotal,
-                status: statusPed.ABERTO
+                status: statusPed.ABERTO,
+                quantidade
+
             });
 
             const result = await pedidoRepository.criar(pedido, itensPedido);

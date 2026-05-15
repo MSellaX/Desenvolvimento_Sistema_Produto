@@ -8,6 +8,7 @@ const pedidoRepository = {
         try { // Iniciar uma transação para garantir a integridade dos dados
             await conn.beginTransaction();
             let valorTotal = 0;
+            let quantidade = 0;
 
             for (const item of itens) {
                 // Verificar o estoque do produto
@@ -24,7 +25,7 @@ const pedidoRepository = {
                     throw new Error(`Produto ${item.produtoId} sem estoque suficiente`);
                 };
                 
-                produto.quantidade -= item.quantidade;// Atualizar o estoque do produto
+                quantidade = produto.quantidade - item.quantidade;// Atualizar o estoque do produto
 
                 // Verificar se a quantidade solicitada é maior que o estoque disponível
                 if (produto[0].quantidade < 0) {
@@ -35,8 +36,8 @@ const pedidoRepository = {
             }
 
             const [rowsPed] = await conn.execute(
-                "INSERT INTO pedidos(valorTotal, Status) VALUES (?, ?)",
-                [valorTotal, pedido.status]
+                "INSERT INTO pedidos(valorTotal, Status, quantidade) VALUES (?, ?, ?)",
+                [valorTotal, pedido.status, quantidade]
             );
         
             for (const item of itens) {
