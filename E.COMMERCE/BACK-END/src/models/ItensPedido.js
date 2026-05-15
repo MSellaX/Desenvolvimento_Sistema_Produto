@@ -1,14 +1,14 @@
 export class ItensPedido {
     #id;
     #pedidoId;
-    #ProdutoId;
+    #produtoId;
     #quantidade;
     #valorItem;
 
     //construtor
 
     constructor(pProdutoId, pQuantidade, pValorItem, pId, pPedidoId) {
-        this.#ProdutoId = pProdutoId;
+        this.#produtoId = pProdutoId;
         this.#quantidade = pQuantidade;
         this.#valorItem = pValorItem;
         this.#id = pId;
@@ -23,7 +23,7 @@ export class ItensPedido {
         return this.#pedidoId;
     }
     get produtoId() {
-        return this.#ProdutoId;
+        return this.#produtoId;
     }
     get quantidade() {
         return this.#quantidade;
@@ -42,7 +42,7 @@ export class ItensPedido {
     }
     set produtoId(value) {
         this.#validarProdutoId(value);
-        this.#ProdutoId = value
+        this.#produtoId = value
     }
     set quantidade(value) {
         this.#validarQuantidade(value);

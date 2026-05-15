@@ -1,5 +1,5 @@
 import { statusPed } from "../enums/statusPedido.js";
-import { ItensPedido } from "../models/itensPedido.js";
+import { ItensPedido } from "../models/ItensPedido.js";
 import { Pedido } from "../models/Pedido.js";
 import pedidoRepository from "../repositories/pedidoRepository.js";
 
@@ -25,11 +25,10 @@ const pedidoController = {
                 })
             );
 
-            const subTotal = ItensPedido.calcularSubTotalItens(itensPedido);
+            const valorTotal = ItensPedido.calcularSubTotalItens(itensPedido);
 
             const pedido = Pedido.criar({
-                clienteId,
-                subTotal,
+                valorTotal,
                 status: statusPed.ABERTO
             });
 
@@ -73,10 +72,10 @@ const pedidoController = {
                 })
             );
 
-            const subTotal = ItensPedido.calcularSubTotalItens(itensPedido);
+            const valorTotal = ItensPedido.calcularSubTotalItens(itensPedido);
 
             const pedido = Pedido.alterar(
-                { clienteId, subTotal, status },
+                { clienteId, valorTotal, status },
                 id
             );
 

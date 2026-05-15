@@ -2,14 +2,18 @@ export class Produtos{
     #idProduto;
     #idCategoria;
     #nome;
-    #valor;
-    #vinculoImagem;
+    #descricao;
+    #preco;
+    #imagem;
+    #quantidade;
 
-    constructor (pIdCategoria, pNome, pValor, pVinculoImagem, pIdProduto){
-        this.idCategoria = pIdCategoria;
-        this.nome = pNome;
-        this.valor = pValor;
-        this.vinculoImagem = pVinculoImagem;
+    constructor (pIdCategoria, pNome, pDescricao, pPreco, pImagem, pQuantidade, pIdProduto){
+        this.#idCategoria = pIdCategoria;
+        this.#nome = pNome;
+        this.#descricao = pDescricao;
+        this.#preco = pPreco;
+        this.#imagem = pImagem;
+        this.#quantidade = pQuantidade;
         this.idProduto = pIdProduto;
     }
 
@@ -35,19 +39,33 @@ export class Produtos{
         this.#validarNome(value);
         this.#nome = value;
     }
-    get valor(){
-        return this.#valor
+    get descricao(){
+        return this.#descricao
     }
-    set valor(value){
-        this.#validarValor(value)
-        this.#valor = Number(value)
+    set descricao(value){
+        this.#validarDescricao(value)
+        this.#descricao = value
     }
-    get vinculoImagem(){
-        return this.#vinculoImagem
+    get preco(){
+        return this.#preco
     }
-    set vinculoImagem(value){
+    set preco(value){
+        this.#validarPreco(value)
+        this.#preco = Number(value)
+    }
+    get imagem(){
+        return this.#imagem
+    }
+    set imagem(value){
         this.#validarPathImagem(value);
-        this.#vinculoImagem = value;
+        this.#imagem = value;
+    }
+    get quantidade(){
+        return this.#quantidade
+    }
+    set quantidade(value) {
+        this.#validarQuantidade(value);
+        this.#quantidade = value
     }
 
     //metodos auxiliares
@@ -67,7 +85,12 @@ export class Produtos{
             throw new Error ('O campo nome é obrigatório e deve ter entre 3 a 45 caracteres');           
         }
     }
-    #validarValor(value) {
+    #validarDescricao(value) {
+        if(value && (value.trim().length < 10 || value.trim().length > 100)){
+            throw new Error ('O campo descrição e deve ter entre 10 a 100 caracteres');           
+        }
+    }
+    #validarPreco(value) {
         if (value === undefined || value === null || isNaN(Number(value)) || Number(value) <= 0) {
             throw new Error('O campo valor é obrigatório e deve ser numérico maior que zero');
         }
@@ -78,13 +101,18 @@ export class Produtos{
             throw new Error('Impossivel enviar a imagem');
         }
     }
+    #validarQuantidade(value) {
+        if (!value || value <= 0) {
+            throw new Error("Não foi possivel obter a quantidade");
+        }
+    }
 
     //criação de objetos usando o design patterns FACTORY mathod
 
     static criar(dados){
-        return new Produtos(dados.idCategoria, dados.nome, dados.valor, dados.vinculoImagem, null);
+        return new Produtos(dados.idCategoria, dados.nome, dados.descricao, dados.preco, dados.imagem, dados.quantidade, null);
     }
     static alterar(dados, idProduto){
-        return new Produtos(dados.idCategoria, dados.nome, dados.valor, dados.vinculoImagem, idProduto);
+        return new Produtos(dados.idCategoria, dados.nome, dados.descricao, dados.preco, dados.imagem, dados.quantidade, idProduto);
     }
 }
