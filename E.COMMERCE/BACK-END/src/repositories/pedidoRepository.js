@@ -1,30 +1,32 @@
 import { connection } from "../config/Database.js";
-
+// Repositório para gerenciar pedidos e itens de pedidos
 const pedidoRepository = {
 
     criar: async (pedido, itens) => {
         const conn = await connection.getConnection();
-
-        try {
+        
+        try { // Iniciar uma transação para garantir a integridade dos dados
             await conn.beginTransaction();
             let total = 0;
 
             for (const item of itens) {
+                // Verificar o estoque do produto
                 let [produto] = await conn.execute(
                     "SELECT quantidade, preco FROM produtos WHERE id = ?",
                     [item.produtoId]
                 );
-
+                // Verificar se o produto existe
                 if (produto.length !== 1) {
                     throw new Error(`Produto ${item.produtoId} não encontrado`);
                 }
-                
+                // Verificar se há estoque suficiente
                 if (produto[0].quantidade === 0) {
                     throw new Error(`Produto ${item.produtoId} sem estoque suficiente`);
                 };
                 
-                produto.quantidade -= item.quantidade;
-                
+                produto.quantidade -= item.quantidade;// Atualizar o estoque do produto
+
+                // Verificar se a quantidade solicitada é maior que o estoque disponível
                 if (produto[0].quantidade < 0) {
                     throw new Error(`Quantidade insuficiente para o produto ${item.produtoId}`);
                 }
@@ -36,7 +38,7 @@ const pedidoRepository = {
                 "INSERT INTO pedidos(, valorTotal, Status) VALUES (?, ?, ?)",
                 [valorTotal, pedido.status]
             );
-
+        
             for (const item of itens) {
                 const [produto] = await conn.execute(
                     "SELECT preco FROM produtos WHERE id = ?",
@@ -63,6 +65,7 @@ const pedidoRepository = {
         }
     },
 
+    // Editar um pedido existente, atualizando o valor total e os itens do pedido
     editar: async (id, pedido, itens) => {
         const conn = await connection.getConnection();
 
@@ -117,7 +120,8 @@ const pedidoRepository = {
         }
     },
 
-    deletar: async (id) => {
+    // Deletar um pedido e seus itens associados
+    deletar: async (id) => { 
         const conn = await connection.getConnection();
 
         try {
@@ -143,6 +147,7 @@ const pedidoRepository = {
             conn.release();
         }
     },
+    // Remover um item específico de um pedido, atualizando o valor total do pedido
     removerItem: async (pedidoId, itemId) => {
         const conn = await connection.getConnection();
 
@@ -191,6 +196,7 @@ const pedidoRepository = {
         }
     },
 
+    // Selecionar todos os pedidos com seus itens associados, ordenados por ID do pedido e ID do item
     selecionar: async () => {
         const [rows] = await connection.execute(`
             SELECT 
@@ -207,6 +213,7 @@ const pedidoRepository = {
         return rows;
     },
 
+    // Adicionar um item a um pedido existente, atualizando o valor total do pedido
     adicionarItem: async (pedidoId, item) => {
         const conn = await connection.getConnection();
 
@@ -249,6 +256,7 @@ const pedidoRepository = {
         }
     },
 
+    // Editar um item específico de um pedido, atualizando a quantidade e o valor total do pedido
     editarItem: async (pedidoId, itemId, quantidade) => {
         const conn = await connection.getConnection();
 
@@ -314,6 +322,7 @@ const pedidoRepository = {
         }
     },
 
+    // Editar o status de um pedido, garantindo que o status seja válido e que o pedido exista
     editarStatus: async (id, status) => {
         const conn = await connection.getConnection();
 
