@@ -1,4 +1,4 @@
-/* style */
+/* style teste*/
 :root {
   --bs-primary: #740001;
   --bs-primary-rgb: 116, 0, 1;
@@ -15,7 +15,7 @@ body {
   background-color: #FAF9F8;
 }
 
-.personagem-card {
+.card-produto {
   border-radius: 16px;
   overflow: hidden;
   background-color: #FDFCFB;
@@ -23,21 +23,21 @@ body {
   transition: all 0.3s ease;
 }
 
-.personagem-card:hover {
+.card-produto:hover {
   transform: translateY(-8px);
 }
 
-.personagem-img {
+.imagem-produto {
   height: 320px;
   object-fit: cover;
   transition: transform 0.5s;
 }
 
-.personagem-card:hover .personagem-img {
+.card-produto:hover .imagem-produto {
   transform: scale(1.05);
 }
 
-.personagem-card .btn {
+.card-produto .btn {
   width: 40px;
   height: 40px;
   display: flex;
@@ -45,13 +45,13 @@ body {
   justify-content: center;
 }
 
-.personagem-card .text-warning {
+.card-produto .text-warning {
   color: #D3A625 !important;
   letter-spacing: 1px;
   font-size: 10px;
 }
 
-.material-symbols-outlined {
+.icone-materiais {
   font-size: 20px;
   transition: 0.2s;
 
@@ -62,31 +62,31 @@ body {
     'opsz' 24;
 }
 
-.favorito .material-symbols-outlined {
+.favorito .icone-materiais {
   font-variation-settings:
     'FILL' 1;
   color: #D3A625;
 }
 
-button:hover .material-symbols-outlined {
+button:hover .icone-materiais {
   color: #D3A625;
 }
 
-.quantity-control button {
+.controle-quantidade button {
   min-width: 34px;
   min-height: 34px;
   padding: 0;
   border-radius: 12px;
 }
 
-.quantity-control input {
+.controle-quantidade input {
   max-width: 72px;
   appearance: textfield;
   -moz-appearance: textfield;
 }
 
-.quantity-control input::-webkit-outer-spin-button,
-.quantity-control input::-webkit-inner-spin-button {
+.controle-quantidade input::-webkit-outer-spin-button,
+.controle-quantidade input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }

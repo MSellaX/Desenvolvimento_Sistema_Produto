@@ -1,6 +1,6 @@
 export function criarBotaoCarrinho(favorito = false){
     const button = document.createElement('button');
-// component
+// componentes
 
     button.className = `
         btn p-0
@@ -18,7 +18,7 @@ export function criarBotaoCarrinho(favorito = false){
     }
 
     const icon = document.createElement('span');
-    icon.className = `material-symbols-outlined`;
+    icon.className = `material-symbols-outlined icone-materiais`;
     icon.innerText = 'shopping_cart';
 
     button.appendChild(icon);
