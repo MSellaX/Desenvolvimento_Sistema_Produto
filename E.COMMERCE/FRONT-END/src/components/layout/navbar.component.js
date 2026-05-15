@@ -25,7 +25,7 @@ export default function criarNavbar() {
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse justify-content-center" id="menu">
+      <div class="collapse navbar-collapse justify-content-end" id="menu">
 
         <ul class="navbar-nav mb-2 mb-lg-0 d-flex flex-row gap-3">
 
@@ -50,16 +50,6 @@ export default function criarNavbar() {
         </ul>
 
       </div>
-
-      <form class="d-flex">
-        <input 
-          class="form-control" 
-          type="search" 
-          placeholder="Pesquisar" 
-          id="inputSearch"
-        >
-      </form>
-
     </div>
   `;
 

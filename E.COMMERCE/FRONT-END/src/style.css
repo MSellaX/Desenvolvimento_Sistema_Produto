@@ -14,6 +14,10 @@ body {
   --bs-success: #EEBA30;
 }
 
+html, body {
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   font-family: 'Manrope', 'Inter', sans-serif;
