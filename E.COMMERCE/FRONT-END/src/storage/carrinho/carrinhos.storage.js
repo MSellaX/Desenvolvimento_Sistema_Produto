@@ -1,5 +1,5 @@
 const CARRINHO_KEY = 'carrinho';
-// carrinhos
+// carrinho
 function getCarrinho() {
     return JSON.parse(
         localStorage.getItem(CARRINHO_KEY) ||
