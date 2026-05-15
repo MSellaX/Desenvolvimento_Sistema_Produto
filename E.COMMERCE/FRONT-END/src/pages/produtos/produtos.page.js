@@ -13,9 +13,9 @@ export async function produtosPage() {
 
     const row = document.querySelector("#lista-produtos");
 
-    const personagens = await buscarProdutos();
+    const produtos = await buscarProdutos();
 
-    personagens.forEach(produto => {
+    produtos.forEach(produto => {
         const coluna = criarColuna();
         const card = criarCardProduto(produto);
 
