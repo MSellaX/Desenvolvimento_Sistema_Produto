@@ -1,10 +1,10 @@
-# 🧙‍♂️ Harry Potter Explorer
+# 📎E.COMMERCE
 
-Aplicação Front-End desenvolvida como **Single Page Application (SPA)** utilizando **Vite** e consumindo dados da **HP API**.
+Aplicação API  desenvolvida como **Single Page Application (SPA)** utilizando **Vite** e consumindo dados da **HP API**.
 
-Permite explorar personagens do universo *Harry Potter*, com suporte a **paginação** e **favoritos persistidos** no navegador. 
+Permite voce adicionar produtos ao seu carrinho, com suporte a **paginação** e **carrinho** no navegador. 
 
-**Projeto desenvolvido para aulas de front-end.**
+**Projeto desenvolvido para aulas de front-end e back-end.**
 
 ## 🚀 Tecnologias
 
@@ -22,26 +22,20 @@ https://hp-api.onrender.com/
 
 ### 1. Clonar o repositório
 ```bash
-git clone https://github.com/seu-usuario/harry-potter-explorer.git
+git clone https://github.com/MSellaX/Desenvolvimento_Sistema_Produto.git
 ```
 
-### 2. Instalar dependências
-```bash
-cd harry-potter-explorer
-npm install
-```
-
-### 3. Rodar em ambiente de desenvolvimento
+### 2. Rodar em ambiente de desenvolvimento
 ```bash
 npm run dev
 ```
 
-### 4. Gerar build de produção
+### 3. Gerar build de produção
 ```bash
 npm run build
 ```
 
-### 5. Visualizar build
+### 4. Visualizar build
 ```bash
 npm run preview
 ```
@@ -49,22 +43,41 @@ npm run preview
 ## 📁 Estrutura do projeto
 ```pgsql
 📦 E.COMMERCE
- ┣ 📂 Back-End
- ┣ docs
- ┣ 📂 src
- ┃ ┣ 📂 assets
- ┃ ┣ 📂 components
- ┃ ┃ ┣ 📂 layout
- ┃ ┃ ┣ 📂 personagem
- ┃ ┃ ┣ 📂 shared
- ┃ ┃ ┗ 📂 ui
- ┃ ┣ 📂 config
- ┃ ┣ 📂 pages
- ┃ ┣ 📂 services
- ┃ ┣ 📂 storage
- ┃ ┣ 📜 main.js
- ┃ ┗ 📜 style.css
- ┣ 📜 index.html
+ ┣ 📂 back-end
+ ┃ ┣ 📂docs
+ ┃ ┃ ┗ 📜 README.md
+ ┃ ┣ 📂 src
+ ┃ ┃ ┣ 📂 config
+ ┃ ┃ ┣ 📂 controllers
+ ┃ ┃ ┣ 📂 enums
+ ┃ ┃ ┣ 📂 middlewares
+ ┃ ┃ ┣ 📂 models    
+ ┃ ┃ ┣ 📂 repositories
+ ┃ ┃ ┣ 📂 routes                            
+ ┃ ┃ ┣ 📂 utils
+ ┃ ┃ ┗ 📜 sever.js
+ ┃ ┣ 📜 .env
+ ┃ ┣ 📓 .gitignore
+ ┃ ┗ 📜 package.json
+ ┣ 📂 front-end
+ ┃ ┣ 📂 public
+ ┃ ┣ 📂 src
+ ┃ ┃ ┣ 📂 components
+ ┃ ┃ ┃ ┣ 📂 layout
+ ┃ ┃ ┃ ┣ 📂 personagem
+ ┃ ┃ ┃ ┗ 📂 shared
+ ┃ ┃ ┣ 📂 pages
+ ┃ ┃ ┃ ┗ 📂 personagem
+ ┃ ┃ ┣ 📂 services
+ ┃ ┃ ┃ ┗ 📂 personagem
+ ┃ ┃ ┣ 📂 storage
+ ┃ ┃ ┃ ┗ 📂 personagem
+ ┃ ┃ ┣ 📜 main.js
+ ┃ ┃ ┗ 📜 style.css
+ ┃ ┣ 📓 .gitignore
+ ┃ ┣ 📜 index.html
+ ┃ ┣ 📜 package-lock.json
+ ┃ ┗ 📜 packge.json
  ┗ 📜 README.md
 ```
 
@@ -81,18 +94,10 @@ npm run preview
 | `style.css` | Estilos globais da aplicação. |
 
 ## ✨ Funcionalidades
-- 🔍 Listagem de personagens;
-- 📄 Paginação dinâmica;
-- ⭐ Sistema de favoritos;
-- 💾 Persistência no navegador;
-- ⚡ Interface rápida com Vite;
-
-## 🚧 Melhorias futuras
-
-Algumas evoluções planejadas para o projeto:
-
-- [ ] Migrar para React;
-- [ ] Adicionar modo escuro (dark mode);
-- [ ] Animações suaves na troca de páginas;
-- [ ] Filtros (casa, espécie, gênero, etc.);
-- [ ] Ordenação (nome, casa, etc.);
+- 📝 Listagem de produtos;
+- 👁️Consulta de produto por ID;
+- 🗞️Cadastro, edição e remoção de produtos;
+- ✏️Registro de pedidos enviados pelo front-end;
+- 🔍Consulta de pedidos cadastrados;
+- 🔣Cálculo automático do valor total da compra;
+- ✅Validação de estoque durante a finalização do pedido;
