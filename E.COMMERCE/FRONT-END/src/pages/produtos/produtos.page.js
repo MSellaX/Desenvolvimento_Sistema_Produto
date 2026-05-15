@@ -5,7 +5,7 @@ import criarCardProduto from '../../components/produtos/card.component';
 export async function produtosPage() {
     const app = document.querySelector("#app");
 
-    // página de produto
+    // página de produtos
     app.innerHTML = `
         <h1 class="fw-bold text-primary">📦 Produtos </h1>
         <div class="row mt-4" id="lista-produtos"></div>

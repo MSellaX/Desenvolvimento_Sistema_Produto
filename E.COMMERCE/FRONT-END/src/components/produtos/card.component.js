@@ -1,7 +1,7 @@
 import { criarBotaoCarrinho } from "./button.component";
 import criarImagemProduto from "./imagem.component";
 import { salvarCarrinho, removerCarrinho, noCarrinho, alterarQuantidade } from '../../storage/carrinho/carrinhos.storage'
-// componentes
+// componente
 
 export default function criarCardProduto(produto, { modo = 'produtos', aoMudarQtd, aoRemover } = {}) {
     const card = document.createElement('div');
@@ -38,12 +38,10 @@ export default function criarCardProduto(produto, { modo = 'produtos', aoMudarQt
     const btnCarrinho = criarBotaoCarrinho(estaNoCarrinho);
     const botaoMenos = document.createElement('button');
     botaoMenos.type = 'button';
-    botaoMenos.className = 'btn btn-outline-secondary btn-sm';
     botaoMenos.innerText = '-';
 
     const botaoMais = document.createElement('button');
     botaoMais.type = 'button';
-    botaoMais.className = 'btn btn-outline-secondary btn-sm';
     botaoMais.innerText = '+';
 
     const campoQtd = document.createElement('input');
@@ -94,7 +92,6 @@ export default function criarCardProduto(produto, { modo = 'produtos', aoMudarQt
 
             btnCarrinho.classList.toggle('border-warning', estaNoCarrinho);
             btnCarrinho.classList.toggle('text-warning', estaNoCarrinho);
-            btnCarrinho.classList.toggle('border-secondary', !estaNoCarrinho);
             btnCarrinho.classList.toggle('text-secondary', !estaNoCarrinho);
             card.classList.toggle('favorito', estaNoCarrinho);
         } else {

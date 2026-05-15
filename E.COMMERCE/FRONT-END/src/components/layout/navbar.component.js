@@ -1,6 +1,6 @@
 import { produtosPage } from '../../pages/produtos/produtos.page';
 import { produtosCarrinhoPage } from '../../pages/produtos/carrinho.page';
-// componentes
+// componente
 export default function criarNavbar() {
 
   const header = document.querySelector('header');
@@ -31,7 +31,7 @@ export default function criarNavbar() {
 
           <li class="nav-item">
             <button 
-              class="nav-link fw-bold text-primary active" 
+              class="nav-link fw-bold active" 
               id="btnProdutos"
             >
               Produtos
@@ -74,12 +74,12 @@ export function ativarMenu(botaoClicado) {
 
   document.querySelectorAll('.nav-link').forEach(btn => {
 
-    btn.classList.remove('active', 'text-primary');
+    btn.classList.remove('active');
     btn.classList.add('text-white');
 
   });
 
-  botaoClicado.classList.add('active', 'text-primary');
+  botaoClicado.classList.add('active');
   botaoClicado.classList.remove('text-white');
 
 }                                                                                                                                          
