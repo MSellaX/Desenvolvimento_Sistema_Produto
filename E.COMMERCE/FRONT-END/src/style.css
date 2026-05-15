@@ -1,15 +1,9 @@
-/*
-  Estilos globais + tema Harry Potter.
-  O Bootstrap já vem do CDN; aqui sobrescrevemos variáveis (--bs-primary, etc.)
-  para manter a identidade visual sem editar o CSS do framework inteiro.
-*/
+
 :root {
   --bs-primary: #740001;
   --bs-primary-rgb: 116, 0, 1;
-  /* para alterar os textos também */
   --bs-secondary: #D3A625;
   --bs-success: #EEBA30;
-  /* pode usar como tertiary */
 }
 
 body {
@@ -17,7 +11,6 @@ body {
   background-color: #FAF9F8;
 }
 
-/* Cartão: aparência própria (o restante usa classes Bootstrap no JS). */
 .personagem-card {
   border-radius: 16px;
   overflow: hidden;
@@ -30,7 +23,6 @@ body {
   transform: translateY(-8px);
 }
 
-/* IMAGEM */
 .personagem-img {
   height: 320px;
   object-fit: cover;
@@ -41,7 +33,6 @@ body {
   transform: scale(1.05);
 }
 
-/* botão flutuante */
 .personagem-card .btn {
   width: 40px;
   height: 40px;
@@ -50,7 +41,6 @@ body {
   justify-content: center;
 }
 
-/* casa */
 .personagem-card .text-warning {
   color: #D3A625 !important;
   letter-spacing: 1px;
@@ -76,6 +66,41 @@ body {
 
 button:hover .material-symbols-outlined {
   color: #D3A625;
+}
+
+.quantity-control button {
+  min-width: 34px;
+  min-height: 34px;
+  padding: 0;
+  border-radius: 12px;
+}
+
+.quantity-control input {
+  max-width: 72px;
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.quantity-control input::-webkit-outer-spin-button,
+.quantity-control input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.carrinho-total {
+  border-top: 1px solid rgba(0,0,0,0.08);
+  padding-top: 1rem;
+}
+
+.produto-total {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.preco-produto {
+  font-size: 1.1rem;
+  margin-top: 0.75rem;
+  letter-spacing: 0.3px;
 }
 
 .page-link {
