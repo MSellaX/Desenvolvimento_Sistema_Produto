@@ -2,6 +2,7 @@ export class Pedido{
     #id;
     #valorTotal;
     #status;
+    #quantidade
     #dataCad
 
     //construtor
