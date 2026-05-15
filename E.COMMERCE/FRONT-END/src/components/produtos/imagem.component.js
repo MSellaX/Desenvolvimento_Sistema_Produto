@@ -1,6 +1,6 @@
 export default function criarImagemProduto(produto) {
     const img = document.createElement('img');
-// component
+// componentes
 
     img.className = 'card-img-top img-fluid';
 

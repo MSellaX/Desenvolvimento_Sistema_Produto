@@ -1,6 +1,6 @@
 export function criarBotaoCarrinho(favorito = false){
     const button = document.createElement('button');
-// component
+// componentes
 
     button.className = `
         btn p-0

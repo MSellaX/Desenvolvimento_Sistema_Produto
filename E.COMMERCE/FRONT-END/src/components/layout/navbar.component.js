@@ -1,6 +1,6 @@
 import { produtosPage } from '../../pages/produtos/produtos.page';
 import { produtosCarrinhoPage } from '../../pages/produtos/carrinho.page';
-// component
+// componentes
 export default function criarNavbar() {
 
   const header = document.querySelector('header');

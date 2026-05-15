@@ -4,7 +4,7 @@ import criarCardProduto from '../../components/produtos/card.component';
 
 export async function produtosCarrinhoPage() {
 
-    //página de carrinho
+    //página de carrinhos
     const app = document.querySelector("#app");
 
     app.innerHTML = `
